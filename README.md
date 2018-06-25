@@ -1,6 +1,6 @@
 # ACSegmentView
 
-[![CI Status](https://img.shields.io/travis/Archie-BlaySolutions/ACSegmentView.svg?style=flat)](https://travis-ci.org/Archie-BlaySolutions/ACSegmentView)
+[![CI Status](https://img.shields.io/travis/ArchieR7/ACSegmentView.svg?style=flat)](https://travis-ci.org/ArchieR7/ACSegmentView)
 [![Version](https://img.shields.io/cocoapods/v/ACSegmentView.svg?style=flat)](https://cocoapods.org/pods/ACSegmentView)
 [![License](https://img.shields.io/cocoapods/l/ACSegmentView.svg?style=flat)](https://cocoapods.org/pods/ACSegmentView)
 [![Platform](https://img.shields.io/cocoapods/p/ACSegmentView.svg?style=flat)](https://cocoapods.org/pods/ACSegmentView)
@@ -22,7 +22,7 @@ pod 'ACSegmentView'
 
 ## Author
 
-Archie-BlaySolutions, Archie@Archie.tw
+Archie, Archie@Archie.tw
 
 ## License
 

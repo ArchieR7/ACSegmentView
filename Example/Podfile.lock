@@ -1,0 +1,28 @@
+PODS:
+  - ACSegmentView (0.1.0):
+    - RxCocoa (~> 4.2.0)
+    - RxSwift (~> 4.2.0)
+  - RxCocoa (4.2.0):
+    - RxSwift (~> 4.0)
+  - RxSwift (4.2.0)
+
+DEPENDENCIES:
+  - ACSegmentView (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - RxCocoa
+    - RxSwift
+
+EXTERNAL SOURCES:
+  ACSegmentView:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  ACSegmentView: 08b8fec6c337300b388a3ebce5c431661b42d7d3
+  RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
+  RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
+
+PODFILE CHECKSUM: 70d142ce58d0bed6ddbc1b539d7f24e149a0e0ef
+
+COCOAPODS: 1.5.3

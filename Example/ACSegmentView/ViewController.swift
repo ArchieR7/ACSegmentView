@@ -7,18 +7,28 @@
 //
 
 import UIKit
+import ACSegmentView
+import RxSwift
 
 class ViewController: UIViewController {
 
+    @IBOutlet private weak var segmentView: ACSegmentView!
+    @IBOutlet private weak var demoLabel: UILabel!
+    
+    private let disposeBag = DisposeBag()
+    private var viewModel: ACSegmentViewModel? {
+        didSet {
+            guard let viewModel = viewModel else { return }
+            segmentView.viewModel = viewModel
+            viewModel.selectedIndex.map { (index) -> String in
+                return "Select \(index)"
+            }.bind(to: demoLabel.rx.text).disposed(by: disposeBag)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        viewModel = ACSegmentViewModel(titles: ["Segment 1", "Segment 2", "Segment 3"])
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 }
 

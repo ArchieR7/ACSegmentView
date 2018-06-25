@@ -22,21 +22,34 @@ ACSegmentView is available through [CocoaPods](https://cocoapods.org). To instal
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'ACSegmentView', '~> 1.0.0'
+pod 'ACSegmentView', '~> 1.0.1'
 ```
-
-## Dependencies
-- [RxSwift](https://www.github.com/ReactiveX/RxSwift)
 
 ## Usage
-`ACSegmentViewModel` provides `selectedIndex` to subscribe with RxSwift.
-We can create a `ACSegmentViewModel` and subscribe it to do something while user select difference index.
+`ACSemgntViewModelDelegate` is an optional variable in `ACSegementViewModel`,
+`ACSemgntViewModelDelegate` provides `func segmentView(didSelectIndexAt index: Int)`. 
+We can create a `ACSegmentViewModel` and set delegate to do something while user select difference index.
 
-Here's an example, we subscribed `ACSegmentViewModel.selectedIndex` and convert to string for `UILabel`.
+Here's an example,
 ```
-viewModel.selectedIndex.map { (index) -> String in
-    return "Select \(index)"
-}.bind(to: demoLabel.rx.text).disposed(by: disposeBag)
+private var viewModel: ACSegmentViewModel? {
+didSet {
+    guard let viewModel = viewModel else { return }
+        segmentView.viewModel = viewModel
+        viewModel.delegate = self
+    }
+}
+
+override func viewDidLoad() {
+    super.viewDidLoad()
+    viewModel = ACSegmentViewModel(titles: ["Segment 1", "Segment 2", "Segment 3"])
+}
+
+extension ViewController: ACSegmentViewModelDelegate {
+    func segmentView(didSelectIndexAt index: Int) {
+        demoLabel.text = "Select \(index)"
+    }
+}
 ```
 then set `ACSegmentViewModel` to be `ACSegmentView.viewModel`.👏👏👏
 

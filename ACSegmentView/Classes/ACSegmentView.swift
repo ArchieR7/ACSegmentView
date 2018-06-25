@@ -27,23 +27,7 @@ public class ACSegmentView: UIView {
             addSubview(selectedLineView)
             setUpSelectedLineView(size: viewModel.selectedLineSize)
             setUpButtons(titles: viewModel.titles, font: viewModel.titleFont)
-            viewModel.selectedIndex.distinctUntilChanged().asObservable().subscribe(onNext: { [weak self] index in
-                guard let `self` = self else { return }
-                var targetButton: UIButton?
-                self.selectedLineViewCenterX?.isActive = false
-                self.buttons.forEach({ (button) in
-                    if button.tag == index {
-                        targetButton = button
-                    }
-                    button.setTitleColor(button.tag == index ? viewModel.buttonSelectedTitleColor : viewModel.buttonTitleDefaultColor, for: .normal)
-                })
-                guard let button = targetButton else { return }
-                self.selectedLineViewCenterX = NSLayoutConstraint(item: self.selectedLineView, attribute: .centerX, relatedBy: .equal, toItem: targetButton, attribute: .centerX, multiplier: 1, constant: 0)
-                UIView.animate(withDuration: 0.33, animations: {
-                    self.selectedLineView.center.x = button.center.x
-                    self.selectedLineViewCenterX?.isActive = true
-                })
-            }).disposed(by: disposeBag)
+            setUpView(index: 0)
         }
     }
     
@@ -61,9 +45,7 @@ public class ACSegmentView: UIView {
             button.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             button.titleLabel?.font = font
             button.setTitleColor(viewModel.buttonTitleDefaultColor, for: .normal)
-            button.rx.tap.map({ (_) -> Int in
-                return button.tag
-            }).bind(to: viewModel.selectedIndex).disposed(by: disposeBag)
+            button.addTarget(self, action: #selector(ACSegmentView.clickButton(_:)), for: .touchUpInside)
             return button
         })
         stackView = UIStackView(arrangedSubviews: buttons)
@@ -83,12 +65,33 @@ public class ACSegmentView: UIView {
         NSLayoutConstraint(item: stackView, attribute: .right, relatedBy: .equal, toItem: self, attribute: .right, multiplier: 1, constant: 0).isActive = true
     }
     
-    
     private func setUpSelectedLineView(size: CGSize) {
         selectedLineView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint(item: selectedLineView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: size.width).isActive = true
         NSLayoutConstraint(item: selectedLineView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0).isActive = true
         NSLayoutConstraint(item: selectedLineView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: size.height).isActive = true
-        
+    }
+    
+    @objc private func clickButton(_ sender: UIButton) {
+        setUpView(index: sender.tag)
+    }
+    
+    private func setUpView(index: Int) {
+        guard let viewModel = viewModel else { return }
+        var targetButton: UIButton?
+        selectedLineViewCenterX?.isActive = false
+        buttons.forEach({ (button) in
+            if button.tag == index {
+                targetButton = button
+            }
+            button.setTitleColor(button.tag == index ? viewModel.buttonSelectedTitleColor : viewModel.buttonTitleDefaultColor, for: .normal)
+        })
+        guard let button = targetButton else { return }
+        self.selectedLineViewCenterX = NSLayoutConstraint(item: self.selectedLineView, attribute: .centerX, relatedBy: .equal, toItem: targetButton, attribute: .centerX, multiplier: 1, constant: 0)
+        UIView.animate(withDuration: 0.33, animations: {
+            self.selectedLineView.center.x = button.center.x
+            self.selectedLineViewCenterX?.isActive = true
+        })
+        viewModel.delegate?.segmentView(didSelectIndexAt: index)
     }
 }

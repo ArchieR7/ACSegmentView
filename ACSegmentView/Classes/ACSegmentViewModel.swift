@@ -8,7 +8,7 @@
 import RxCocoa
 
 final public class ACSegmentViewModel {
-    public let selectedIndex = BehaviorRelay.init(value: 0)
+    public var delegate: ACSegmentViewModelDelegate?
     var selectedLineColor: UIColor
     var titles: [String]
     var titleFont: UIFont?
@@ -24,4 +24,8 @@ final public class ACSegmentViewModel {
         self.buttonTitleDefaultColor = buttonTitleDefaultColor
         self.buttonSelectedTitleColor = buttonSelectedTitleColor
     }
+}
+
+public protocol ACSegmentViewModelDelegate {
+    func segmentView(didSelectIndexAt index: Int)
 }

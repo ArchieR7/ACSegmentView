@@ -20,9 +20,7 @@ class ViewController: UIViewController {
         didSet {
             guard let viewModel = viewModel else { return }
             segmentView.viewModel = viewModel
-            viewModel.selectedIndex.map { (index) -> String in
-                return "Select \(index)"
-            }.bind(to: demoLabel.rx.text).disposed(by: disposeBag)
+            viewModel.delegate = self
         }
     }
     
@@ -32,3 +30,8 @@ class ViewController: UIViewController {
     }
 }
 
+extension ViewController: ACSegmentViewModelDelegate {
+    func segmentView(didSelectIndexAt index: Int) {
+        demoLabel.text = "Select \(index)"
+    }
+}

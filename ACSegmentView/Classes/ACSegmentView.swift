@@ -13,7 +13,6 @@ public class ACSegmentView: UIView {
     }
     private let selectedLineView = UIView()
     private var buttons = [UIButton]()
-    private let disposeBag = DisposeBag()
     private var selectedLineViewCenterX: NSLayoutConstraint?
     
     public var viewModel: ACSegmentViewModel? {

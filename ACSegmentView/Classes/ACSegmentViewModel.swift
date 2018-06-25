@@ -5,8 +5,6 @@
 //  Created by Archie on 2018/6/23.
 //
 
-import RxCocoa
-
 final public class ACSegmentViewModel {
     public var delegate: ACSegmentViewModelDelegate?
     var selectedLineColor: UIColor

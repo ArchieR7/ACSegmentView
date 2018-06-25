@@ -5,9 +5,6 @@
 //  Created by Archie on 2018/6/23.
 //
 
-import RxSwift
-import RxCocoa
-
 public class ACSegmentView: UIView {
     private var stackView = UIStackView() {
         didSet {

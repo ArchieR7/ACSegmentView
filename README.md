@@ -22,19 +22,19 @@ ACSegmentView is available through [CocoaPods](https://cocoapods.org). To instal
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'ACSegmentView', '~> 1.0.0'
+pod 'ACSegmentView', '~> 1.0.2'
 ```
 
 ## Dependencies
 - [RxSwift](https://www.github.com/ReactiveX/RxSwift)
 
 ## Usage
-`ACSegmentViewModel` provides `selectedIndex` to subscribe with RxSwift.
+`ACSegmentViewModel` provides `rx` to subscribe with RxSwift.
 We can create a `ACSegmentViewModel` and subscribe it to do something while user select difference index.
 
-Here's an example, we subscribed `ACSegmentViewModel.selectedIndex` and convert to string for `UILabel`.
+Here's an example, we subscribed `ACSegmentViewModel.rx.selectedSegmentIndex` and convert to string for `UILabel`.
 ```
-viewModel.selectedIndex.map { (index) -> String in
+viewModel.rx.selectedSegmentIndex.map { (index) -> String in
     return "Select \(index)"
 }.bind(to: demoLabel.rx.text).disposed(by: disposeBag)
 ```

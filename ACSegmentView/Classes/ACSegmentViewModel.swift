@@ -6,9 +6,10 @@
 //
 
 import RxCocoa
+import RxSwift
 
 final public class ACSegmentViewModel {
-    public let selectedIndex = BehaviorRelay.init(value: 0)
+    let selectedIndex = BehaviorRelay.init(value: 0)
     var selectedLineColor: UIColor
     var titles: [String]
     var titleFont: UIFont?
@@ -23,5 +24,13 @@ final public class ACSegmentViewModel {
         self.selectedLineSize = selectedLineSize
         self.buttonTitleDefaultColor = buttonTitleDefaultColor
         self.buttonSelectedTitleColor = buttonSelectedTitleColor
+    }
+}
+
+extension ACSegmentViewModel: ReactiveCompatible { }
+
+extension Reactive where Base : ACSegmentViewModel {
+    public var selectedSegmentIndex: Observable<Int> {
+        return base.selectedIndex.asObservable()
     }
 }

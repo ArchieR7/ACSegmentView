@@ -7,6 +7,9 @@ language: swift
 xcode_workspace: Example/ACSegmentView.xcworkspace
 xcode_sdk: iphonesimulator
 xcode_scheme: ACSegmentView-Example
+notifications:
+    slack: archie-ios:Tke817kcQU8VJoQlZnT0LRr4
+
 # cache: cocoapods
 podfile: Example/Podfile
 before_install:

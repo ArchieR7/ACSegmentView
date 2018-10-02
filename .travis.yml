@@ -8,10 +8,11 @@ xcode_workspace: Example/ACSegmentView.xcworkspace
 xcode_sdk: iphonesimulator
 xcode_scheme: ACSegmentView-Example
 # cache: cocoapods
-# podfile: Example/Podfile
+podfile: Example/Podfile
 before_install:
 # - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
 # - pod install --project-directory=Example
+- pod repo update
 - pod update
 script:
 - pod lib lint --allow-warnings

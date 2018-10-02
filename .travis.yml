@@ -16,6 +16,6 @@ before_install:
 # - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
 # - pod install --project-directory=Example
 - pod repo update
-- cd Example/ && pod update
+- cd Example/ && pod update && cd ..
 script:
 - pod lib lint --allow-warnings

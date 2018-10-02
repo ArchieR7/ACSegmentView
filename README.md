@@ -13,7 +13,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Requirement
 - Swift 4.x
-- Xcode 9.x
+- Xcode 10
 - iOS 10 or above
 
 ## Installation
@@ -22,7 +22,7 @@ ACSegmentView is available through [CocoaPods](https://cocoapods.org). To instal
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'ACSegmentView', '~> 1.0.2'
+pod 'ACSegmentView', '~> 1.0.3'
 ```
 
 ## Dependencies

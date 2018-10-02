@@ -38,7 +38,7 @@ Pod::Spec.new do |s|
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit'
-  s.dependency 'RxSwift', '~> 4.2.0'
-  s.dependency 'RxCocoa', '~> 4.2.0'
-  s.swift_version = '4.1.2'
+  s.dependency 'RxSwift', '~> 4.3.1'
+  s.dependency 'RxCocoa', '~> 4.3.1'
+  s.swift_version = '4.2'
 end

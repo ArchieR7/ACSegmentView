@@ -2,7 +2,7 @@
 # * https://www.objc.io/issues/6-build-tools/travis-ci/
 # * https://github.com/supermarin/xcpretty#usage
 
-osx_image: xcode9.4
+osx_image: xcode10
 language: swift
 xcode_workspace: Example/ACSegmentView.xcworkspace
 xcode_sdk: iphonesimulator
@@ -12,6 +12,6 @@ xcode_scheme: ACSegmentView-Example
 before_install:
 # - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
 # - pod install --project-directory=Example
-
+- pod update
 script:
 - pod lib lint --allow-warnings
